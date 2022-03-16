@@ -4,9 +4,10 @@ class Pagamento{
 
     protected $numeroCarta;
     protected $dataScadenza;
-    protected $nomeCognome;
+    protected $nome;
+    protected $cognome;
     protected $cifreValidazione;
-    public $startdate = "16-03-2022"; //data di oggi
+    public $dataOggi = "16-03-2022"; 
 
     public function __construct($numeroCarta, $dataScadenza, $nomeCognome, $cifreValidazione)
     {
@@ -34,7 +35,42 @@ class Pagamento{
 
         if(preg_match('^([0-2][0-9]|(3)[0-1])(\-||\/)(((0)[0-9])|((1)[0-2]))(\-||\/)\d{4}$', $data)){
 
-            $this->data = $data;
+            $this->dataScadenza = $data; //assegno la data di scadenza correttamente
+
+            $expire = strtotime($this->dataScadenza); //tramite la funzione strtotime converto la data in un valore numerico 
+            $today = strtotime($this->dataOggi);      //se è più grande significa che è oltre la data di oggi
+
+            if($expire < $today){ //li confronto
+
+                return true;
+
+            } else {
+                return false;
+            }
+
+        } else {
+            return false;
+        }
+    }
+
+    public function setNomeCognome($nome, $cognome){ //il nome e il cognome non devono essere numerici più corti di 2 caratteri
+
+        if (!is_numeric($nome) && strlen($nome) > 1 && !is_numeric($cognome) && strlen($cognome) > 1){ 
+
+            $this->nome = $nome;
+            $this->cognome = $cognome;
+            return true;
+
+        } else {
+            return false;
+        }
+    }
+
+    public function setValidazione($numeroPin){ //l'utente deve inserire solo 3 numeri del retro della carta
+
+        if(preg_match('^[0-9]{3}+$', $numeroPin) == 1){ 
+
+            $this->cifreValidazione = $numeroPin;
             return true;
 
         } else {
