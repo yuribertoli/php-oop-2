@@ -57,12 +57,13 @@ class Utente{
     public function setTelephone($phone_number){ //regex per validare il numero di telefono (^ indica l'inizio del pattern mentre $ indica la fine del pattern, + indica che il pattern dev'essere ripetuto almeno una volta, {10} indica che devono esserci 10 caratteri, [0-9] indica che ogni carattere deve essere entro questo range numerico)
                                                  //preg_match ritorna 1 in caso positivo di match tra la regex e il parametro
 
-        if(preg_match('^[0-9]{10}+$', $phone_number) == 1){
+        if(preg_match('~^[0-9]{10}+$~', $phone_number) == 1){
 
             $this->telephone = $phone_number;
             return true;
 
         } else {
+
             return false;
         }
         
