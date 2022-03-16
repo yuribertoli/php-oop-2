@@ -7,6 +7,7 @@ class Utente{
     protected $email;
     protected $address;
     protected $telephone;
+    public $sconto = 0;
 
     //richiedo obbligatoriamente nome, cognome, indirizzo mail e indirizzo per la spedizione
     public function __construct($name, $surname, $email, $address) 
