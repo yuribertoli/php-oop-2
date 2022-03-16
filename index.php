@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/classi/prodotti/cibi.php';
+require_once __DIR__ . '/classi/prodotti/antipulci.php';
 require_once __DIR__ . '/classi/utente/registrato.php';
 require_once __DIR__ . '/classi/pagamento.php';
 
@@ -62,3 +63,12 @@ if ( //Se tutti i valori ritornano TRUE allora il pagamento è andato a buon fin
     echo "Pagamento rifiutato";
 }
 
+/* ANTIPULCI */
+
+$acquistoAntipulci = new Antipulci("maggio");
+
+if ($acquistoAntipulci->disponibile){
+    echo "<br><br> Prodotto disponibile";
+} else {
+    echo "<br><br> Prodotto non disponibile";
+}
