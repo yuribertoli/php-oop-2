@@ -65,7 +65,8 @@ if ( //Se tutti i valori ritornano TRUE allora il pagamento è andato a buon fin
 
 /* ANTIPULCI */
 
-$acquistoAntipulci = new Antipulci("maggio");
+//chiedo il mese presente per sapere se il prodotto è disponibile o meno
+$acquistoAntipulci = new Antipulci("maggio"); 
 
 if ($acquistoAntipulci->disponibile){
     echo "<br><br> Prodotto disponibile";
