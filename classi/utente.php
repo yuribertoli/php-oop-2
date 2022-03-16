@@ -9,7 +9,7 @@ class Utente{
     protected $telephone;
 
     //richiedo obbligatoriamente nome, cognome, indirizzo mail e indirizzo per la spedizione
-    public function __construct($name, $surname, $email, $address, $telephone = "Numero non fornito") 
+    public function __construct($name, $surname, $email, $address) 
     {
         $this->name = $name;
         $this->surname = $surname;
@@ -54,10 +54,10 @@ class Utente{
         }
     }
 
-    public function setTelephone($phone_number){ //regex per validare il numero di telefono (// indicano la sequenza, ^ indica l'inizio del pattern mentre $ indica la fine del pattern, + indica che il pattern dev'essere ripetuto almeno una volta, {10} indica che devono esserci 10 caratteri, [0-9] indica che ogni carattere deve essere entro questo range numerico)
+    public function setTelephone($phone_number){ //regex per validare il numero di telefono (^ indica l'inizio del pattern mentre $ indica la fine del pattern, + indica che il pattern dev'essere ripetuto almeno una volta, {10} indica che devono esserci 10 caratteri, [0-9] indica che ogni carattere deve essere entro questo range numerico)
                                                  //preg_match ritorna 1 in caso positivo di match tra la regex e il parametro
 
-        if(preg_match('/^[0-9]{10}+$/', $phone_number) == 1){
+        if(preg_match('^[0-9]{10}+$', $phone_number) == 1){
 
             $this->telephone = $phone_number;
             return true;
